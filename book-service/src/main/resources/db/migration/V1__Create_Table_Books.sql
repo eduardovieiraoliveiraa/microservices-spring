@@ -1,0 +1,11 @@
+﻿CREATE TABLE book (
+  id NUMERIC(10) PRIMARY KEY,
+  author VARCHAR(100),
+  launch_date DATE NOT NULL,
+  price decimal(65,2) NOT NULL,
+  title VARCHAR(100)
+);
+
+CREATE SEQUENCE SEQBOOK
+    START WITH 1  
+    INCREMENT BY 1; 

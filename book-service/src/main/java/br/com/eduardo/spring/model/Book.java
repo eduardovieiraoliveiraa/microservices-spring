@@ -4,27 +4,50 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.Objects;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.SequenceGenerator;
+import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
+import jakarta.persistence.Transient;
 /**
  * @author Eduardo Oliveira
  * @date 16/06/2023
  */
 
+@Entity
+@Table(name = "book", schema = "book_service")
 public class Book implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQBOOK")
+	@SequenceGenerator(allocationSize = 1,sequenceName = "SEQBOOK", name = "SEQBOOK")
 	private Long id;
 
+	@Column(name = "author", nullable = false, length = 100)
 	private String author;
 
+	@Column(name = "launch_date", nullable = false)
+	@Temporal(TemporalType.DATE)
 	private Date launchDate;
 
+	@Column(nullable = false)
 	private BigDecimal price;
 
+	@Column(nullable = false, length = 250)
 	private String title;
 
+	@Transient
 	private String currency;
 
+	@Transient
 	private String enviroment;
 
 	public Book() {
